@@ -101,11 +101,7 @@ export default class DynamicImagesGallery extends React.Component<IDynamicImages
           <WebPartTitle displayMode={this.props.displayMode}
             title={this.props.title}
             updateProperty={this.props.updateProperty}
-            moreLink={
-              () => {
-                return (<Link href="htttps://www.contoso.com">See all</Link>);
-              }
-            } />
+          />
           /* <WebPartTitle displayMode = { this.props.displayMode }
           title = { this.props.title }
           updateProperty = { this.props.updateProperty }
