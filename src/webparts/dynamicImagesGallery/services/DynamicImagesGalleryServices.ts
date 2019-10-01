@@ -35,9 +35,12 @@ export class DynamicImagesGalleryService implements IDynamicImagesGalleryService
         console.log('getSiteGalleryLibrary');
         results = await sp.web
             .lists
-            .select('ID', 'Title')
-            .filter('BaseTemplate eq 101')
+            .select('ID', 'Title', 'Hidden')
+            .filter('BaseTemplate eq 101 and Hidden eq false')
+            .usingCaching()
             .get();
+        console.log('getSiteGalleryLibrary');
+        console.log(results);
         return results;
     }
 }
