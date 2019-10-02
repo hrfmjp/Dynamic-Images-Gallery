@@ -1,11 +1,9 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
 import {
-  Version,
-  DisplayMode
+  Version
 } from '@microsoft/sp-core-library';
 import {
-  WebPartContext,
   BaseClientSideWebPart,
   IPropertyPaneConfiguration,
   PropertyPaneDropdown,
@@ -22,7 +20,6 @@ export interface IDynamicImagesGalleryWebPartProps {
   imagesGallery: string;
   maxItems: number;
   title: string;
-  updateProperty: (value: string) => void;
 }
 
 export default class DynamicImagesGalleryWebPart extends BaseClientSideWebPart<IDynamicImagesGalleryWebPartProps> {
@@ -37,15 +34,15 @@ export default class DynamicImagesGalleryWebPart extends BaseClientSideWebPart<I
     const element: React.ReactElement<IDynamicImagesGalleryProps> = React.createElement(
       DynamicImagesGallery,
       {
+        context: this.context,
+        displayMode: this.displayMode,
         imagesGallery: this.properties.imagesGallery,
         maxItems: this.properties.maxItems,
-        title: this.properties.title,
-        displayMode: this.displayMode,
-        context: this.context,
         webPartElem: this.context.domElement,
+        title: this.properties.title,
         updateProperty: (value: string) => {
           this.properties.title = value;
-        },
+        }
       }
     );
 
