@@ -22,10 +22,7 @@ export interface IDynamicImagesGalleryWebPartProps {
   imagesGallery: string;
   maxItems: number;
   title: string;
-  displayMode: DisplayMode;
   updateProperty: (value: string) => void;
-  context: WebPartContext;
-  webPartElem: HTMLElement;
 }
 
 export default class DynamicImagesGalleryWebPart extends BaseClientSideWebPart<IDynamicImagesGalleryWebPartProps> {
@@ -44,11 +41,11 @@ export default class DynamicImagesGalleryWebPart extends BaseClientSideWebPart<I
         maxItems: this.properties.maxItems,
         title: this.properties.title,
         displayMode: this.displayMode,
+        context: this.context,
+        webPartElem: this.context.domElement,
         updateProperty: (value: string) => {
           this.properties.title = value;
         },
-        context: this.context,
-        webPartElem: this.context.domElement
       }
     );
 

@@ -21,8 +21,7 @@ export default class DynamicImagesGallery extends React.Component<IDynamicImages
     super(props);
     this.state = {
       images: [],
-      isLoading: true,
-      windowSize: this.props.webPartElem.getBoundingClientRect().width
+      isLoading: true
     };
     console.log('Finished Constructor');
   }
@@ -49,7 +48,7 @@ export default class DynamicImagesGallery extends React.Component<IDynamicImages
   }
 
   private handleResize(webpartboundary, event: Event): event is CustomEvent {
-    this.setState({ windowSize: webpartboundary.width });
+    this.setState({ isLoading: false });
     return 'detail' in event;
   }
 
@@ -73,7 +72,7 @@ export default class DynamicImagesGallery extends React.Component<IDynamicImages
   }
 
   public async componentDidUpdate(prevProps: IDynamicImagesGalleryProps, prevState: IDynamicImagesGalleryState) {
-    console.log('componentDidUpdate');
+    console.log('componentDidUpdate ' + this.state.images.length + ' ' + this.state.isLoading);
 
     if (prevProps.imagesGallery !== this.props.imagesGallery || prevProps.maxItems !== this.props.maxItems) {
       this.setState({ isLoading: true });
@@ -86,12 +85,13 @@ export default class DynamicImagesGallery extends React.Component<IDynamicImages
   public render(): React.ReactElement<IDynamicImagesGalleryProps> {
     console.log('Render');
     console.log(this.state.images);
-    console.log(this.state.windowSize);
+    console.log(this.props.webPartElem.getBoundingClientRect().width);
 
+    let windowsSize = this.props.webPartElem.getBoundingClientRect().width;
     let rowItems = 5;
-    if (this.state.windowSize <= 750) {
+    if (windowsSize <= 750) {
       rowItems = 3;
-    } else if (this.state.windowSize <= 980) {
+    } else if (windowsSize <= 980) {
       rowItems = 4;
     }
 
@@ -114,7 +114,7 @@ export default class DynamicImagesGallery extends React.Component<IDynamicImages
           this.state.isLoading ? <Spinner size={SpinnerSize.large} label='loading images...' /> :
             <DynamicImagesGalleryFocusZone
               items={this.state.images}
-              size={(this.state.windowSize - 20 * (rowItems - 1)) / rowItems}
+              size={(windowsSize - 20 * (rowItems - 1)) / rowItems}
             />
         }
       </div>

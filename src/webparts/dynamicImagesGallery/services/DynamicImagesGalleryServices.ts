@@ -30,12 +30,12 @@ export class DynamicImagesGalleryService implements IDynamicImagesGalleryService
         return results;
     }
 
-    public async getSiteGalleryLibrary(): Promise<any[]> {
+    public async getSiteGalleryLibrary(): Promise<IList[]> {
         let results: IList[];
         console.log('getSiteGalleryLibrary');
         results = await sp.web
             .lists
-            .select('ID', 'Title', 'Hidden')
+            .select('ID', 'Title')
             .filter('BaseTemplate eq 101 and Hidden eq false')
             .usingCaching()
             .get();
