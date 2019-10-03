@@ -1,6 +1,8 @@
 # Dynamic Images Gallery
 This Web part display images in specified library that order by 'Modified' field value.
 
+![callendar](/dynamic-images-gallery/assets/demo.gif)
+
 ## Used SharePoint Framework Version 
 ![drop](https://img.shields.io/badge/version-1.9.1-green.svg)
 
@@ -12,7 +14,7 @@ Images Gallery | Doropdown| yes|
 Max Items | Slider | yes |  
 
 ## Solution
-The Web Part Use
+This Web Part Use
 - Nodejs 10.16.0
 - SharePoint Framework 1.9.1
 - PnPjs 1.3.5
