@@ -1,7 +1,7 @@
 # Dynamic Images Gallery
 This Web part display images in specified library that order by 'Modified' field value.
 
-![callendar](/dynamic-images-gallery/assets/demo.gif)
+![demo](/assets/demo.gif)
 
 ## Used SharePoint Framework Version 
 ![drop](https://img.shields.io/badge/version-1.9.1-green.svg)
